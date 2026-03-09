@@ -15,3 +15,5 @@ python -c "import cv2"
 
 
 and then run the program firstproject.py in vs code 
+Command to run:python firstproject.py 
+
