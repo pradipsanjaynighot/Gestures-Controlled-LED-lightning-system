@@ -1,0 +1,31 @@
+int leds[5] = {7, 8, 9, 10, 11};
+byte fingerData[5];
+
+void setup() {
+  Serial.begin(9600);
+
+  for (int i = 0; i < 5; i++) {
+    pinMode(leds[i], OUTPUT);
+    digitalWrite(leds[i], LOW);
+  }
+}
+
+void loop() {
+  // Wait until 5 bytes arrive
+  if (Serial.available() >= 5) {
+
+    // Read 5 bytes from Python
+    for (int i = 0; i < 5; i++) {
+      fingerData[i] = Serial.read();
+    }
+
+    // Control LEDs
+    for (int i = 0; i < 5; i++) {
+      if (fingerData[i] == 1) {
+        digitalWrite(leds[i], HIGH);
+      } else {
+        digitalWrite(leds[i], LOW);
+      }
+    }
+  }
+}
